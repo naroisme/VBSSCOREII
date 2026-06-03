@@ -1005,7 +1005,7 @@ export default function EsportsLeaderboard() {
               marginBottom: "clamp(12px, 3vh, 28px)",
               filter: "drop-shadow(0 0 30px #ff4d6d) drop-shadow(0 0 70px #ff450088)",
               animation: "sirenSpin 0.8s ease-in-out infinite alternate",
-            }}>hehe</div>
+            }}>🚨</div>
 
             {/* TIME'S UP text */}
             <div style={{
