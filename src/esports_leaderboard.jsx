@@ -672,7 +672,7 @@ export default function EsportsLeaderboard() {
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
             <div style={{ fontSize: 28 }}>🎮</div>
             <div>
-              <div style={{ fontFamily: "'Orbitron',sans-serif", fontWeight: 900, fontSize: 20, background: `linear-gradient(90deg,${NEON_BLUE},${NEON_PURPLE})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: 2 }}>EDU ARENA</div>
+              <div style={{ fontFamily: "'Orbitron',sans-serif", fontWeight: 900, fontSize: 20, background: `linear-gradient(90deg,${NEON_BLUE},${NEON_PURPLE})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: 2 }}>JESUS IS THE LIFE OF THE WORLD</div>
               <div style={{ fontSize: 10, color: "#555", letterSpacing: 3, textTransform: "uppercase" }}>School Esports Leaderboard</div>
             </div>
           </div>
