@@ -7,7 +7,7 @@ import { createClient } from "@supabase/supabase-js";
 //  2. Settings → API
 //  3. Copy "Project URL" and "anon public" key below
 // ============================================================
-const SUPABASE_URL = "https://rflmjoozkehxangswwze.supabase.co/rest/v1/";
+const SUPABASE_URL = "https://rflmjoozkehxangswwze.supabase.co";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJmbG1qb296a2VoeGFuZ3N3d3plIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NDUxMDAsImV4cCI6MjA5NjAyMTEwMH0.4Vfe4cE4v9H4XkcFAe5mBJGzP_0sagXGsc-pDTOltPE";
 // ============================================================
 
