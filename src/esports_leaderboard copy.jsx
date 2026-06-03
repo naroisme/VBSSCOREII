@@ -9,7 +9,6 @@ import { createClient } from "@supabase/supabase-js";
 // ============================================================
 const SUPABASE_URL = "https://rflmjoozkehxangswwze.supabase.co";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJmbG1qb296a2VoeGFuZ3N3d3plIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NDUxMDAsImV4cCI6MjA5NjAyMTEwMH0.4Vfe4cE4v9H4XkcFAe5mBJGzP_0sagXGsc-pDTOltPE";
-
 // ============================================================
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -84,7 +83,7 @@ function Confetti({ active }) {
 function StarBurst({ active, pointsAdded, teamName }) {
   const audioCtxRef = useRef(null);
   const [show, setShow] = useState(false);
-  const [phase, setPhase] = useState(0); // 0=hidden, 1=flash, 2=content, 3=fadeout
+  const [phase, setPhase] = useState(0); 
 
   useEffect(() => {
     if (active) {
@@ -248,7 +247,7 @@ function StarBurst({ active, pointsAdded, teamName }) {
             animation: "teamNamePulse 1s ease-in-out infinite alternate",
             whiteSpace: "nowrap",
             marginBottom: "clamp(4px, 1.2vh, 12px)",
-          }}>🎮 {teamName}</div>
+          }}>{teamName}</div>
         )}
 
         {/* +Points */}
@@ -671,10 +670,10 @@ export default function EsportsLeaderboard() {
       <header style={{ position: "relative", zIndex: 10, background: "linear-gradient(180deg,rgba(13,13,26,0.98) 0%,rgba(13,13,26,0.9) 100%)", borderBottom: "1px solid #00d4ff33", padding: "0 20px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 68 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-            <div style={{ fontSize: 28 }}>🎮</div>
+            <div style={{ fontSize: 28 }}></div>
             <div>
-              <div style={{ fontFamily: "'Orbitron',sans-serif", fontWeight: 900, fontSize: 20, background: `linear-gradient(90deg,${NEON_BLUE},${NEON_PURPLE})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: 2 }}>EDU ARENA</div>
-              <div style={{ fontSize: 10, color: "#555", letterSpacing: 3, textTransform: "uppercase" }}>School Esports Leaderboard</div>
+              <div style={{ fontFamily: "'Orbitron',sans-serif", fontWeight: 900, fontSize: 20, background: `linear-gradient(90deg,${NEON_BLUE},${NEON_PURPLE})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: 2 }}>JESUS IS THE LIFE OF THE WORLD</div>
+              <div style={{ fontSize: 10, color: "#555", letterSpacing: 3, textTransform: "uppercase" }}>Team Leaderboard</div>
             </div>
           </div>
           <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
@@ -737,9 +736,9 @@ export default function EsportsLeaderboard() {
           {/* Leaderboard Table */}
           <div style={{ background: "rgba(13,13,26,0.95)", border: "1px solid #1a1a3a", borderRadius: 16, overflow: "hidden", boxShadow: "0 0 40px rgba(0,212,255,0.05)" }}>
             {/* Table Header */}
-            <div style={{ display: "grid", gridTemplateColumns: "70px 1fr 90px 90px 90px 130px", padding: "14px 24px", borderBottom: "1px solid #1a1a3a", background: "rgba(0,212,255,0.04)" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "60px 1fr 80px 80px 80px 100px", padding: "12px 20px", borderBottom: "1px solid #1a1a3a", background: "rgba(0,212,255,0.04)" }}>
               {["RANK","TEAM","PLAYED","WINS","LOSSES","POINTS"].map(h => (
-                <div key={h} style={{ fontSize: 12, fontWeight: 800, color: "#555", letterSpacing: 2, textAlign: h === "TEAM" ? "left" : "center" }}>{h}</div>
+                <div key={h} style={{ fontSize: 11, fontWeight: 800, color: "#555", letterSpacing: 2, textAlign: h === "TEAM" ? "left" : "center" }}>{h}</div>
               ))}
             </div>
 
@@ -748,33 +747,20 @@ export default function EsportsLeaderboard() {
               const globalRank = (team.points > 0 || team.wins > 0) ? rankedTeams.findIndex(t => t.id===team.id)+1 : null;
               const isHighlit = highlightId === team.id;
               return (
-                <div key={team.id} style={{ display: "grid", gridTemplateColumns: "70px 1fr 90px 90px 90px 130px", padding: "18px 24px", borderBottom: "1px solid #0d0d1a", alignItems: "center", background: isHighlit ? "#ffd70011" : i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)", transition: "background 0.3s", animation: isHighlit ? "highlight 2s ease" : "none" }}>
-                  {/* Rank — bigger */}
-                  <div style={{ display: "flex", justifyContent: "center" }}>
-                    {globalRank === null || globalRank === undefined
-                      ? <span style={{ fontSize: 18, fontWeight: 700, color: "#444", fontFamily: "monospace" }}>—</span>
-                      : globalRank <= 3
-                        ? <span style={{ fontSize: 36, filter: `drop-shadow(0 0 8px ${["#ffd70088","#c0c0c088","#cd7f3288"][globalRank-1]})` }}>{["🥇","🥈","🥉"][globalRank-1]}</span>
-                        : <span style={{ fontSize: 20, fontWeight: 900, color: "#888", fontFamily: "monospace" }}>#{globalRank}</span>
-                    }
-                  </div>
-                  {/* Team name + logo — bigger */}
-                  <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                    <TeamLogo logo={team.logo} name={team.name} color={team.color} size={56} />
+                <div key={team.id} style={{ display: "grid", gridTemplateColumns: "60px 1fr 80px 80px 80px 100px", padding: "14px 20px", borderBottom: "1px solid #0d0d1a", alignItems: "center", background: isHighlit ? "#ffd70011" : i % 2 === 0 ? "transparent" : "rgba(255,255,255,0.01)", transition: "background 0.3s", animation: isHighlit ? "highlight 2s ease" : "none" }}>
+                  <div style={{ display: "flex", justifyContent: "center" }}><RankBadge rank={globalRank} /></div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <TeamLogo logo={team.logo} name={team.name} color={team.color} size={40} />
                     <div>
-                      <div style={{ fontWeight: 800, fontSize: 18, color: "#fff" }}>{team.name}</div>
+                      <div style={{ fontWeight: 700, fontSize: 15, color: "#fff" }}>{team.name}</div>
                       <div style={{ fontSize: 11, color: "#555", letterSpacing: 1 }}>TEAM</div>
                     </div>
                   </div>
-                  {/* Played */}
-                  <div style={{ textAlign: "center", fontWeight: 800, color: "#888", fontSize: 20 }}>{team.wins + team.losses}</div>
-                  {/* Wins */}
-                  <div style={{ textAlign: "center", fontWeight: 800, color: NEON_GREEN, fontSize: 20 }}>{team.wins}</div>
-                  {/* Losses */}
-                  <div style={{ textAlign: "center", fontWeight: 800, color: "#ff4d6d", fontSize: 20 }}>{team.losses}</div>
-                  {/* Points — biggest */}
+                  <div style={{ textAlign: "center", fontWeight: 700, color: "#888" }}>{team.wins + team.losses}</div>
+                  <div style={{ textAlign: "center", fontWeight: 700, color: NEON_GREEN }}>{team.wins}</div>
+                  <div style={{ textAlign: "center", fontWeight: 700, color: "#ff4d6d" }}>{team.losses}</div>
                   <div style={{ textAlign: "center" }}>
-                    <div style={{ fontFamily: "'Orbitron',sans-serif", fontWeight: 900, fontSize: 28, color: team.color, textShadow: `0 0 14px ${team.color}88` }}>{team.points}</div>
+                    <div style={{ fontFamily: "'Orbitron',sans-serif", fontWeight: 900, fontSize: 35, color: team.color, textShadow: `0 0 10px ${team.color}88` }}>{team.points}</div>
                     {showAdmin && (
                       <div style={{ display: "flex", gap: 4, justifyContent: "center", marginTop: 4, alignItems: "center", flexWrap: "wrap" }}>
                         <button key="minus100" onClick={() => adjustPoints(team.id, -100)} style={{ padding: "2px 6px", borderRadius: 4, background: "#ff4d6d22", border: "1px solid #ff4d6d44", color: "#ff4d6d", cursor: "pointer", fontSize: 11, fontWeight: 700 }}>-100</button>
