@@ -7,8 +7,8 @@ import { createClient } from "@supabase/supabase-js";
 //  2. Settings → API
 //  3. Copy "Project URL" and "anon public" key below
 // ============================================================
-const SUPABASE_URL = "https://rflmjoozkehxangswwze.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJmbG1qb296a2VoeGFuZ3N3d3plIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA0NDUxMDAsImV4cCI6MjA5NjAyMTEwMH0.4Vfe4cE4v9H4XkcFAe5mBJGzP_0sagXGsc-pDTOltPE";
+const SUPABASE_URL = "PASTE_YOUR_PROJECT_URL_HERE";
+const SUPABASE_KEY = "PASTE_YOUR_ANON_KEY_HERE";
 // ============================================================
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -457,6 +457,8 @@ export default function EsportsLeaderboard() {
   const [timerExpired, setTimerExpired] = useState(false);
   const timerRef = useRef(null);
 
+  const loadedRef = useRef(false);
+
   // 🟢 Load data from Supabase on mount
   useEffect(() => {
     async function loadData() {
@@ -467,6 +469,8 @@ export default function EsportsLeaderboard() {
       const { data: matchRow } = await supabase
         .from("leaderboard").select("value").eq("key", "matches").single();
       if (matchRow?.value?.length) setMatchLog(matchRow.value);
+
+      loadedRef.current = true;
     }
     loadData();
 
@@ -482,13 +486,15 @@ export default function EsportsLeaderboard() {
     return () => supabase.removeChannel(channel);
   }, []);
 
-  // 🟢 Save teams to Supabase whenever they change
+  // 🟢 Save teams to Supabase — only AFTER initial load
   useEffect(() => {
+    if (!loadedRef.current) return;
     supabase.from("leaderboard")
       .update({ value: teams }).eq("key", "teams").then(() => {});
   }, [teams]);
 
   useEffect(() => {
+    if (!loadedRef.current) return;
     supabase.from("leaderboard")
       .update({ value: matchLog }).eq("key", "matches").then(() => {});
   }, [matchLog]);
@@ -999,7 +1005,7 @@ export default function EsportsLeaderboard() {
               marginBottom: "clamp(12px, 3vh, 28px)",
               filter: "drop-shadow(0 0 30px #ff4d6d) drop-shadow(0 0 70px #ff450088)",
               animation: "sirenSpin 0.8s ease-in-out infinite alternate",
-            }}>🚨</div>
+            }}>hehe</div>
 
             {/* TIME'S UP text */}
             <div style={{
