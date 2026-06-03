@@ -83,7 +83,7 @@ function Confetti({ active }) {
 function StarBurst({ active, pointsAdded, teamName }) {
   const audioCtxRef = useRef(null);
   const [show, setShow] = useState(false);
-  const [phase, setPhase] = useState(0); // 0=hidden, 1=flash, 2=content, 3=fadeout
+  const [phase, setPhase] = useState(0); 
 
   useEffect(() => {
     if (active) {
@@ -247,7 +247,7 @@ function StarBurst({ active, pointsAdded, teamName }) {
             animation: "teamNamePulse 1s ease-in-out infinite alternate",
             whiteSpace: "nowrap",
             marginBottom: "clamp(4px, 1.2vh, 12px)",
-          }}>🎮 {teamName}</div>
+          }}>{teamName}</div>
         )}
 
         {/* +Points */}
@@ -670,10 +670,10 @@ export default function EsportsLeaderboard() {
       <header style={{ position: "relative", zIndex: 10, background: "linear-gradient(180deg,rgba(13,13,26,0.98) 0%,rgba(13,13,26,0.9) 100%)", borderBottom: "1px solid #00d4ff33", padding: "0 20px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 68 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-            <div style={{ fontSize: 28 }}>🎮</div>
+            <div style={{ fontSize: 28 }}></div>
             <div>
               <div style={{ fontFamily: "'Orbitron',sans-serif", fontWeight: 900, fontSize: 20, background: `linear-gradient(90deg,${NEON_BLUE},${NEON_PURPLE})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: 2 }}>JESUS IS THE LIFE OF THE WORLD</div>
-              <div style={{ fontSize: 10, color: "#555", letterSpacing: 3, textTransform: "uppercase" }}>School Esports Leaderboard</div>
+              <div style={{ fontSize: 10, color: "#555", letterSpacing: 3, textTransform: "uppercase" }}>Team Leaderboard</div>
             </div>
           </div>
           <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
